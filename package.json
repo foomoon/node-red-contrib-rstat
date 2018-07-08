@@ -1,0 +1,28 @@
+{
+    "name": "node-red-contrib-rstat",
+    "version": "0.0.2",
+    "description": "An radio thermostat node for node-red",
+    "dependencies": {
+        "rtstat": "0.0.2"
+    },
+    "keywords": [
+        "node-red",
+        "radio thermostat"
+    ],
+    "node-red": {
+        "nodes": {
+            "rstat": "rstat.js"
+        }
+    },
+    "main": "rstat.js",
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "none"
+    },
+    "author": "Daniel Claxton",
+    "license": "MIT"
+}
