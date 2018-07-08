@@ -10,16 +10,11 @@ module.exports = function(RED) {
 
         RED.nodes.createNode(node, n);
 
-        var tlist = rtstat.findThermostats();
+
 
         // which returns a promise that will resolve to an object with tstat uuids as keys and tstat objects as, um, objects
 
-        tlist.then(function(thermostats) {
-            for (var key in thermostats) {
-                // 'key' is this thermostat's uuid
-                var thisTstat = thermostats[key];
-            }
-        });
+
 
 
         //if (node.myConfig) {
@@ -34,6 +29,18 @@ module.exports = function(RED) {
             //outputPromise.then(function(value) {
             //    node.send({ payload: value });
             //});
+
+            var tlist = rtstat.findThermostats();
+            node.send({ payload: tlist });
+            /*
+            tlist.then(function(thermostats) {
+                for (var key in thermostats) {
+                    // 'key' is this thermostat's uuid
+                    var thisTstat = thermostats[key];
+                    node.send( {payload: {uuid: key, therm: thermostats}} );
+                }
+            });*/
+
         });
 
     }
