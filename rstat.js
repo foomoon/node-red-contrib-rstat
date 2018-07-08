@@ -31,15 +31,16 @@ module.exports = function(RED) {
             //});
 
             var tlist = rtstat.findThermostats();
-            node.send({ payload: tlist });
-            /*
+            //node.send({ payload: tlist });
+            var output = [];
             tlist.then(function(thermostats) {
                 for (var key in thermostats) {
                     // 'key' is this thermostat's uuid
                     var thisTstat = thermostats[key];
-                    node.send( {payload: {uuid: key, therm: thermostats}} );
+                    output.push({ uuid: key, therm: thisTstat });
                 }
-            });*/
+                node.send({ payload: output })
+            });
 
         });
 
