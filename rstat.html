@@ -1,21 +1,25 @@
-<script type="text/x-red" data-template-name="rstat">
+<script type="text/x-red" data-template-name="rstat in">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
+        <label for="node-input-url"><i class="fa fa-tag"></i>URL</label>
+        <input type="text" id="node-input-url" placeholder="URL">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="rstat">
-    <p>A test node.</p>
-    <p>Help something something</p>
+<script type="text/x-red" data-help-name="rstat in">
+    <p>Rstat.</p>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('rstat', {
+    RED.nodes.registerType('rstat in', {
         category: 'weather',
         color: "#d8455d",
         defaults: {
             name: {
+                value: ""
+            },
+            url: {
                 value: ""
             }
         },
