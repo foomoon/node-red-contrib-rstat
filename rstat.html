@@ -1,11 +1,11 @@
 <script type="text/x-red" data-template-name="rstat in">
     <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-ip"><i class="fa fa-location-arrow"></i>IP</label>
-        <input type="text" id="node-input-ip" placeholder="IP">
+        <label for="node-input-ip"><i class="fa fa-location-arrow"></i> IP Address</label>
+        <input type="text" id="node-input-ip" placeholder="0.0.0.0">
         <a id="node-input-ip-lookup" class="btn"><i id="node-input-ip-lookup-icon" class="fa fa-search"></i></a>
     </div>
 </script>
@@ -43,27 +43,27 @@
 
                 $("#node-input-ip-lookup").addClass('disabled');
 
-                var rtstat = require('rtstat');
-                var tlist = rtstat.findThermostats();
-                var output = [];
-                tlist.then(function(thermostats) {
+                //var rtstat = require('rtstat');
+                //var tlist = rtstat.findThermostats();
+                var output = ['a', 'b', 'c'];
+                /*tlist.then(function(thermostats) {
                     for (var key in thermostats) {
                         // 'key' is this thermostat's uuid
                         var thisTstat = thermostats[key];
                         output.push(thisTstat.ipAddress);
                     }
                     $("#node-input-ip-lookup").removeClass('disabled');
+                    */
+                //node-input-ip
+                $("#node-input-ip").autocomplete({
+                    source: output,
+                    minLength: 0,
+                    close: function(event, ui) {
+                        $("#node-input-ip").autocomplete("destroy");
+                    }
+                }).autocomplete("search", "");
 
-                    //node-input-ip
-                    $("#node-input-ip").autocomplete({
-                        source: output,
-                        minLength: 0,
-                        close: function(event, ui) {
-                            $("#node-input-ip").autocomplete("destroy");
-                        }
-                    }).autocomplete("search", "");
-
-                });
+                //});
 
 
 
