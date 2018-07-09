@@ -17,7 +17,7 @@ module.exports = function(RED) {
 
             var tstat = rtstat.tstat(ipaddr);
 
-            obj.handleInputEvent(msg)
+            //obj.handleInputEvent(msg)
             var outputPromise = tstat.ttemp();
             outputPromise.then(function(value) {
                 node.send({ payload: value });
