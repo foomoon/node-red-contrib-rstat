@@ -48,4 +48,16 @@ module.exports = function(RED) {
     RED.nodes.registerType("rstat in", RadioThermIn);
 
 
+    RED.httpAdmin.get("/thermostats", RED.auth.needsPermission('rstat.read'), function(req, res) {
+        var tlist = rtstat.findThermostats();
+        var output = [];
+        tlist.then(function(thermostats) {
+            for (var key in thermostats) {
+                // 'key' is this thermostat's uuid
+                var thisTstat = thermostats[key];
+                output.push(thisTstat.ipAddress);
+            }
+            res.json(output);
+        });
+    });
 }
