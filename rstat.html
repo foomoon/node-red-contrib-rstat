@@ -4,19 +4,15 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <!--<label for="node-input-ip"><i class="fa fa-location-arrow"></i> IP Address</label>-->
-        <table width="100%">
-            <tr>
-                <td width="100px"><i class="fa fa-location-arrow"></i> <span> IP Address</span></td>
-                <td>
-                    <input type="text" id="node-input-ip" placeholder="0.0.0.0">
-                </td>
-                <td width="40px">
-                    <a id="node-input-ip-lookup" class="btn"><i id="node-input-ip-lookup-icon" class="fa fa-search"></i></a>
-                </td>
-            </tr>
-        </table>
+        <label for="node-input-ip"><i class="fa fa-location-arrow"></i> IP Address</label>
+        <div style="display:inline-block; width:70%">
+            <input type="text" id="node-input-ip" placeholder="0.0.0.0" dir="" class="input-error" style="width:85%">
+            <a id="node-input-ip-lookup" class="btn" style="width:5%;margin-left: 5px; right:0px">
+                <i id="node-input-ip-lookup-icon" class="fa fa-search"></i>
+            </a>
+        </div>
     </div>
+
 </script>
 
 <script type="text/x-red" data-help-name="rstat in">
