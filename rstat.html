@@ -2,8 +2,9 @@
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
-        <label for="node-input-url"><i class="fa fa-tag"></i>URL</label>
-        <input type="text" id="node-input-url" placeholder="URL">
+        <label for="node-input-ip"><i class="fa fa-tag"></i>IP</label>
+        <input type="text" id="node-input-ip" placeholder="IP">
+        <a id="node-input-ip-lookup" class="btn"><i id="node-input-ip-lookup-icon" class="fa fa-search"></i></a>
     </div>
 </script>
 
@@ -19,7 +20,7 @@
             name: {
                 value: ""
             },
-            url: {
+            ip: {
                 value: "",
                 required: true
             }
@@ -33,6 +34,53 @@
         },
         labelStyle: function() {
             return this.name ? "node_label_italic" : "";
+        },
+        oneditprepare: function() {
+
+            $("#node-input-ip-lookup").click(function() {
+
+                $("#node-input-ip-lookup").addClass('disabled');
+
+                var rtstat = require('rtstat');
+                var tlist = rtstat.findThermostats();
+                var output = [];
+                tlist.then(function(thermostats) {
+                    for (var key in thermostats) {
+                        // 'key' is this thermostat's uuid
+                        var thisTstat = thermostats[key];
+                        output.push(thisTstat.ipAddress);
+                    }
+                    $("#node-input-ip-lookup").removeClass('disabled');
+                });
+
+                //node-input-ip
+                $("#node-input-ip").autocomplete({
+                    source: output,
+                    minLength: 0,
+                    close: function(event, ui) {
+                        $("#node-input-ip").autocomplete("destroy");
+                    }
+                }).autocomplete("search", "");
+
+
+
+                /*
+                $.getJSON('serialports', function(data) {
+                    $("#node-config-lookup-serial").removeClass('disabled');
+                    var ports = [];
+                    $.each(data, function(i, port) {
+                        ports.push(port.comName);
+                    });
+                    $("#node-config-input-serialport").autocomplete({
+                        source: ports,
+                        minLength: 0,
+                        close: function(event, ui) {
+                            $("#node-config-input-serialport").autocomplete("destroy");
+                        }
+                    }).autocomplete("search", "");
+                });*/
+            });
+
         }
     });
 </script>
